@@ -1,3 +1,4 @@
+//Grabbing elements from HTML
 let highScores = document.getElementById("highScores");
 let container = document.getElementById("main-div");
 let playBtn = document.getElementById("play-btn");
@@ -9,8 +10,9 @@ let choice0 = document.getElementById("choice0");
 let choice1 = document.getElementById("choice1");
 let choice2 = document.getElementById("choice2");
 let choice3 = document.getElementById("choice3");
+allBtns.setAttribute("style", "display: none");
 
-
+// Setting an array of buttons & Array objects of Quiz Questions
 let choiceArray = [choice0, choice1, choice2, choice3]
 let testQuestions = [
     {
@@ -18,35 +20,37 @@ let testQuestions = [
         options: ["NodeJs", "React.Js", "Django", "jQuery"],
         answer: "Django"
   
-    },
+        },
     {
         prompt: "What character is used to indicated an end tag?",
         options: ["*", "\\", "^", "/"],
         answer: "/"
 
-    },
+        },
     {
         prompt: "Javascript is interpreted by _____",
         options: ["Object", "Client", "Server", "None of the above"],
         answer: "Client"
-    },
+        },
     {
         prompt: "Which of the following is not a valid Javascript variable names?",
         options: ["FirstName", "firstNames", "_first_names", "2FirstNames"],
         answer: "2FirstNames"
 
-    },
+        },
     {
         prompt: "Using ____ statements are how you test for specific conditions",
         options: ["If", "Switch", "For", "Select"],
         answer: "If"
 
-    }
-]
-allBtns.setAttribute("style", "display: none")
+        }
+    ]
+
+// Setting variables for current value and score
 let currentIndex = 0;
 let score = 0;
 
+// When "Play Now" button is clicked, this code is executed
 function startQuiz() {
     playBtn.setAttribute("style", "display: none");
     hidden.setAttribute("style", "display: none");
@@ -58,14 +62,12 @@ function startQuiz() {
 
 
     allBtns.addEventListener("click", function () {
-        score++;
+        
         currentIndex++;
-        console.log(currentIndex)
+        
         getOptions();
 
-
     })
-
 
 }
 
@@ -80,18 +82,47 @@ function getOptions() {
     }
 
     if (currentIndex === 5) {
-        questionHeading.textContent = "You won!";
+        questionHeading.textContent = "All Done";
         allBtns.setAttribute("style", "display: none")
-    }
+        hidden.setAttribute("style", "display: inline");
+        hidden.textContent = "Your score is " + score + "/" + testQuestions.length
+    } 
 
 }
 
+function checkAnswers() {
 
+    choice0.addEventListener('click', function () {
+        if (choice0.textContent === testQuestions[currentIndex].answer) {
+            score++;
 
+        } 
+    })
 
+    choice1.addEventListener('click', function () {
+        if (choice1.textContent === testQuestions[currentIndex].answer) {
+            score++
 
+        } 
+    })
 
+    choice2.addEventListener('click', function () {
+        if (choice2.textContent === testQuestions[currentIndex].answer) {
+            score++;
 
+        } 
+    })
+
+    choice3.addEventListener('click', function () {
+        if (choice3.textContent === testQuestions[currentIndex].answer) {
+            score++;
+
+        } 
+    })
+
+}
+
+checkAnswers()
 
 
 
