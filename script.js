@@ -95,29 +95,36 @@ function checkAnswers() {
     choice0.addEventListener('click', function () {
         if (choice0.textContent === testQuestions[currentIndex].answer) {
             score++;
+        } else{
 
-        } 
+        }
     })
 
     choice1.addEventListener('click', function () {
         if (choice1.textContent === testQuestions[currentIndex].answer) {
             score++
 
-        } 
+        } else{
+
+        }
     })
 
     choice2.addEventListener('click', function () {
         if (choice2.textContent === testQuestions[currentIndex].answer) {
             score++;
 
-        } 
+        } else {
+
+        }
     })
 
     choice3.addEventListener('click', function () {
         if (choice3.textContent === testQuestions[currentIndex].answer) {
             score++;
 
-        } 
+        } else {
+            
+        }
     })
 
 }
