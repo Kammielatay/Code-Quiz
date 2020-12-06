@@ -86,46 +86,48 @@ function getOptions() {
         allBtns.setAttribute("style", "display: none")
         hidden.setAttribute("style", "display: inline");
         hidden.textContent = "Your score is " + score + "/" + testQuestions.length
+
+        // creating high score textbox
+        let newDiv = document.createElement("div");
+        let label = document.createElement('label')
+        label.textContent = "Enter Initials: "
+        let input = document.createElement('input')
+        let submit = document.createElement('button')
+        submit.classList.add("submit")
+        submit.textContent = "Submit"
+        
+
+
+        container.appendChild(newDiv)
+        newDiv.appendChild(label)
+        label.append(input)
+        newDiv.appendChild(submit)
+
+
+        submit.addEventListener('click', function () {
+            console.log('hello')
+        })
+
+
     } 
+
+
+
 
 }
 
 function checkAnswers() {
 
-    choice0.addEventListener('click', function () {
-        if (choice0.textContent === testQuestions[currentIndex].answer) {
-            score++;
-        } else{
+    for (let i = 0; i < choiceArray.length; i++) {
+        choiceArray[i].addEventListener('click', function () {
+            if (choiceArray[i].textContent === testQuestions[currentIndex].answer) {
+                score++
+            } else {
 
-        }
-    })
+            }
+        })
+    }
 
-    choice1.addEventListener('click', function () {
-        if (choice1.textContent === testQuestions[currentIndex].answer) {
-            score++
-
-        } else{
-
-        }
-    })
-
-    choice2.addEventListener('click', function () {
-        if (choice2.textContent === testQuestions[currentIndex].answer) {
-            score++;
-
-        } else {
-
-        }
-    })
-
-    choice3.addEventListener('click', function () {
-        if (choice3.textContent === testQuestions[currentIndex].answer) {
-            score++;
-
-        } else {
-            
-        }
-    })
 
 }
 

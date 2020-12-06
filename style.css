@@ -17,3 +17,29 @@ a:hover {
     color: #eee;
 }
 
+.submit {
+    margin-left: 10px;
+    padding: .5rem 1rem;
+    width: 100px;
+    border-radius: .3rem;
+    display: inline-block;
+    color: #fff;
+    background-color: #6c757d;;
+    border:none;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    
+}
+
+.submit:hover {
+    background-color: #5a6268;
+}
+
+.submit:focus {
+    outline:none;
+    
+}
