@@ -12,6 +12,7 @@ let choice2 = document.getElementById("choice2");
 let choice3 = document.getElementById("choice3");
 allBtns.setAttribute("style", "display: none");
 
+
 // Setting an array of buttons & Array objects of Quiz Questions
 let choiceArray = [choice0, choice1, choice2, choice3]
 let testQuestions = [
@@ -55,7 +56,7 @@ function startQuiz() {
     playBtn.setAttribute("style", "display: none");
     hidden.setAttribute("style", "display: none");
     allBtns.setAttribute("style", "display: inline");
-
+    
 
     getOptions()
 
@@ -83,9 +84,9 @@ function getOptions() {
 
     if (currentIndex === 5) {
         questionHeading.textContent = "All Done";
-        allBtns.setAttribute("style", "display: none")
+        allBtns.setAttribute("style", "display: none");
         hidden.setAttribute("style", "display: inline");
-        hidden.textContent = "Your score is " + score + "/" + testQuestions.length
+        hidden.textContent = "Your score is " + score + "/" + testQuestions.length;
 
         // creating high score textbox
         let newDiv = document.createElement("div");
@@ -104,31 +105,50 @@ function getOptions() {
         newDiv.appendChild(submit)
 
 
-        submit.addEventListener('click', function () {
-            console.log('hello')
-        })
+        // submit.addEventListener('click', function () {
+        //     console.log('hello')
+        // })
 
 
     } 
 
 
-
-
 }
 
 function checkAnswers() {
+    choice0.addEventListener('click', function () {
+        if (choice0.textContent === testQuestions[currentIndex].answer) {
+            score++;
+        } else {
 
-    for (let i = 0; i < choiceArray.length; i++) {
-        choiceArray[i].addEventListener('click', function () {
-            if (choiceArray[i].textContent === testQuestions[currentIndex].answer) {
-                score++
-            } else {
+        }
+    })
 
-            }
-        })
-    }
+    choice1.addEventListener('click', function () {
+        if (choice1.textContent === testQuestions[currentIndex].answer) {
+            score++;
+        } else {
 
+        }
+    })
 
+    choice2.addEventListener('click', function () {
+        if (choice2.textContent === testQuestions[currentIndex].answer) {
+            score++;
+        } else {
+
+        }
+    })
+
+    choice3.addEventListener('click', function () {
+        if (choice3.textContent === testQuestions[currentIndex].answer) {
+            score++;
+        } else {
+
+        }
+    })
+
+   
 }
 
 checkAnswers()
