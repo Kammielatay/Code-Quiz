@@ -188,21 +188,14 @@ function hideElements() {
 
 // How the Top Scores will be displayed 
 function renderHighScore() {
+
     let nameValue = initials.value + ' - ' + score;
 
     if (score === 5) {
         results.unshift(nameValue)
-    } else if (score === 4) {
-        results.splice(score !== 5, 0, nameValue)
-    } else if (score === 3) {
-        results.splice(score !== 4, 0, nameValue)
-    } else if (score === 2) {
-        results.splice(score !== 3, 0, nameValue)
-    } else if (score === 1) {
-        results.splice(score !== 2, 0, nameValue)
-    } else if (score === 0) {
-        results.splice(score !== 1, 0, nameValue)
-    }
+    } else if (score < 5) {
+        results.push(nameValue)
+    } 
 
     displayingTop5();
 
