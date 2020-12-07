@@ -15,12 +15,15 @@ let btn0 = document.getElementById("btn0");
 let btn1 = document.getElementById("btn1");
 let btn2 = document.getElementById("btn2");
 let btn3 = document.getElementById("btn3");
-
+let h3content = document.getElementById("content")
 
 
 // Setting variables for current value and score
 let currentIndex = 0;
 let score = 0;
+let secondsElasped = 0;
+let interval;
+let finalTime = 0;
 let results = [];
 
 
@@ -65,8 +68,9 @@ function startQuiz() {
     hidden.setAttribute("style", "display: none");
     allBtns.setAttribute("style", "display: inline");
     
+    startTimer();
 
-    getOptions()
+    getOptions();
 
     allBtns.addEventListener("click", function () {
         
@@ -200,7 +204,7 @@ function checkAnswers() {
         if (choice0.textContent === testQuestions[currentIndex].answer) {
             return score++;
         } else {
-
+            return secondsElasped += 10
         }
     })
 
@@ -208,7 +212,7 @@ function checkAnswers() {
         if (choice1.textContent === testQuestions[currentIndex].answer) {
             return score++;
         } else {
-
+            return secondsElasped += 10
         }
     })
 
@@ -216,7 +220,7 @@ function checkAnswers() {
         if (choice2.textContent === testQuestions[currentIndex].answer) {
           return score++;
         } else {
-
+            return secondsElasped += 10
         }
     })
 
@@ -224,13 +228,48 @@ function checkAnswers() {
         if (choice3.textContent === testQuestions[currentIndex].answer) {
            return score++;
         } else {
-
+            return secondsElasped += 10
         }
     })
 
 }
 
 checkAnswers()
+
+// setting timer for quiz
+function startTimer() {
+    clearInterval(interval)
+
+    interval = setInterval(happensEverySecond, 1000)
+}
+
+function happensEverySecond() {
+    secondsElasped++;
+
+    renderTime()
+
+}
+
+
+function renderTime() {
+    var secondsLeft = 30 - secondsElasped;
+    h3content.textContent = "Time Left: " + secondsLeft;
+
+
+    if (secondsLeft === 0 || questionHeading.textContent === "All Done") {
+        clearInterval(interval)
+        h3content.textContent = "";
+    }
+
+    if (secondsElasped === 30 || secondsLeft < 0) {
+        clearInterval(interval)
+        h3content.textContent = "";
+        currentIndex = currentIndex + (testQuestions.length - currentIndex);
+        displayMessage()
+
+    }
+
+}
 
 
 
