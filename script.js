@@ -11,6 +11,11 @@ let choice0 = document.getElementById("choice0");
 let choice1 = document.getElementById("choice1");
 let choice2 = document.getElementById("choice2");
 let choice3 = document.getElementById("choice3");
+let btn0 = document.getElementById("btn0");
+let btn1 = document.getElementById("btn1");
+let btn2 = document.getElementById("btn2");
+let btn3 = document.getElementById("btn3");
+
 
 
 // Setting variables for current value and score
@@ -191,7 +196,7 @@ function renderHighScore() {
 
 // Checking the answer that user clicks to the correct answer of the questions
 function checkAnswers() {
-    choice0.addEventListener('click', function () {
+    btn0.addEventListener('click', function () {
         if (choice0.textContent === testQuestions[currentIndex].answer) {
             return score++;
         } else {
@@ -199,7 +204,7 @@ function checkAnswers() {
         }
     })
 
-    choice1.addEventListener('click', function () {
+    btn1.addEventListener('click', function () {
         if (choice1.textContent === testQuestions[currentIndex].answer) {
             return score++;
         } else {
@@ -207,7 +212,7 @@ function checkAnswers() {
         }
     })
 
-    choice2.addEventListener('click', function () {
+    btn2.addEventListener('click', function () {
         if (choice2.textContent === testQuestions[currentIndex].answer) {
           return score++;
         } else {
@@ -215,7 +220,7 @@ function checkAnswers() {
         }
     })
 
-    choice3.addEventListener('click', function () {
+    btn3.addEventListener('click', function () {
         if (choice3.textContent === testQuestions[currentIndex].answer) {
            return score++;
         } else {
