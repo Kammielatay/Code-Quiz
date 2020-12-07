@@ -1,5 +1,6 @@
 //Grabbing elements from HTML
 let highScores = document.getElementById("highScores");
+let navLink = document.querySelector(".nav-link")
 let container = document.getElementById("main-div");
 let playBtn = document.getElementById("play-btn");
 let allBtns = document.getElementById("buttons");
@@ -15,7 +16,7 @@ let btn0 = document.getElementById("btn0");
 let btn1 = document.getElementById("btn1");
 let btn2 = document.getElementById("btn2");
 let btn3 = document.getElementById("btn3");
-let h3content = document.getElementById("content")
+let h3content = document.getElementById("content");
 
 
 // Setting variables for current value and score
@@ -25,6 +26,7 @@ let secondsElasped = 0;
 let interval;
 let finalTime = 0;
 let results = [];
+let clicked = 0;
 
 
 // Setting an array of buttons & Array objects of Quiz Questions
@@ -67,6 +69,8 @@ function startQuiz() {
     playBtn.setAttribute("style", "display: none");
     hidden.setAttribute("style", "display: none");
     allBtns.setAttribute("style", "display: inline");
+
+    highScores.removeEventListener("click", top5)
     
     startTimer();
 
@@ -100,11 +104,20 @@ function getOptions() {
 function displayMessage() {
 
     if (currentIndex === 5) {
-        questionHeading.textContent = "All Done";
+        
         allBtns.setAttribute("style", "display: none")
+        highScores.setAttribute("style", "display: none")
 
+        if (score >= 3){
+            questionHeading.textContent = "Great Job!";
+        } else if(score < 3) {
+            questionHeading.textContent = "Try Again!";
+        }
+
+        // displaying users score
         hidden.setAttribute("style", "display: inline");
         hidden.textContent = "Your final score is " + score + "/" + testQuestions.length
+        
 
         // creating initials textbox
         let newDiv = document.createElement("div");
@@ -112,7 +125,7 @@ function displayMessage() {
         label.textContent = "Enter Initials: "
         let input = document.createElement('input')
         input.setAttribute("id", "initials")
-        let initials = document.getElementById('initials');
+       
         let submit = document.createElement('button')
         submit.classList.add("submit")
         submit.textContent = "Submit"
@@ -155,17 +168,23 @@ function displayTopScores() {
 
     init();
 
+    hideElements()
+
+    storedHighScores()
+}
+
+// Hiding label and submit button from the container
+function hideElements() {
+
     let hideLabel = document.querySelector('label');
     let hideSubmitBtn = document.querySelector('.submit')
 
     hideSubmitBtn.setAttribute("style", "display: none")
     hideLabel.setAttribute("style", "display: none");
+
     questionHeading.textContent = "HighScores"
-
-    storedHighScores()
+    
 }
-
-
 
 // How the Top Scores will be displayed 
 function renderHighScore() {
@@ -185,26 +204,64 @@ function renderHighScore() {
         results.splice(score !== 1, 0, nameValue)
     }
 
+    displayingTop5();
+
+}
+
+function displayingTop5(){
     for (var i = 0; i < 5; i++) {
         var top5 = results[i];
 
         let li = document.createElement('li')
         li.textContent = top5
         li.setAttribute("data-index", i);
+       
 
         container.appendChild(li);
     }
+
+        //creating reset button
+        let resetBtn = document.createElement('button');
+        resetBtn.classList.add("reset");
+        resetBtn.textContent = "Clear Highscores"
+
+        //creating back button
+        let backBtn = document.createElement('button');
+        backBtn.classList.add('reset');
+        backBtn.textContent = "Go Back"
+
+
+        container.appendChild(resetBtn)
+        container.appendChild(backBtn)
+
+    
+        // setting an event to clear the local storage
+        resetBtn.addEventListener('click', clearTop5)
+
+        backBtn.addEventListener('click', goBack)
 }
 
+// clearing the local storage
+function clearTop5(){
+    localStorage.clear();
+    window.location.reload();
 
+}
+
+// sending user back to homepage
+function goBack() {
+    window.location.reload();
+}
 
 // Checking the answer that user clicks to the correct answer of the questions
 function checkAnswers() {
     btn0.addEventListener('click', function () {
         if (choice0.textContent === testQuestions[currentIndex].answer) {
             return score++;
+            
         } else {
-            return secondsElasped += 10
+            return secondsElasped += 10;
+            
         }
     })
 
@@ -255,8 +312,7 @@ function renderTime() {
     var secondsLeft = 30 - secondsElasped;
     h3content.textContent = "Time Left: " + secondsLeft;
 
-
-    if (secondsLeft === 0 || questionHeading.textContent === "All Done") {
+    if (secondsLeft === 0 || questionHeading.textContent === "Try Again!" || questionHeading.textContent === "Great Job!") {
         clearInterval(interval)
         h3content.textContent = "";
     }
@@ -266,18 +322,45 @@ function renderTime() {
         h3content.textContent = "";
         currentIndex = currentIndex + (testQuestions.length - currentIndex);
         displayMessage()
-
     }
-
 }
 
 
+function top5(){
+    clicked++;
+    playBtn.setAttribute("style", "display: none");
+    hidden.setAttribute("style", "display: none");
+
+    questionHeading.textContent = "HighScores"
+
+    let storedScores = JSON.parse(localStorage.getItem("initials"));
+    
+    if (storedScores !== null) {
+      results = storedScores
+    }
+ 
+    highScores.textContent = "Homepage"
+
+    if (clicked > 1){
+        return;
+    }
+
+    highScores.addEventListener("click", function(){
+        
+        if (highScores.textContent === "Homepage"){
+         window.location.reload();
+        }
+        
+    });
+
+   
+    displayingTop5();
+
+}
 
 // This event will run the dynamic quiz
 playBtn.addEventListener("click", startQuiz)
-
-   
-
+highScores.addEventListener("click", top5);
 
 
 

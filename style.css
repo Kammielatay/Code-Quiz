@@ -17,7 +17,7 @@ a:hover {
     color: #eee;
 }
 
-.submit {
+.submit , .reset {
     margin-left: 10px;
     padding: .5rem 1rem;
     width: 100px;
@@ -35,11 +35,11 @@ a:hover {
     
 }
 
-.submit:hover {
+.submit:hover, .reset:hover {
     background-color: #5a6268;
 }
 
-.submit:focus {
+.submit:focus, .reset:focus {
     outline:none;
     box-shadow: none;
     border:none;
@@ -49,3 +49,14 @@ a:hover {
     margin-top: 50px;
 }
 
+li {
+    text-decoration: none;
+    list-style-type: none;
+
+}
+
+.reset {
+    margin-top: 100px;
+    font-size: 16px;
+    width: 200px;
+}
