@@ -10,15 +10,15 @@ Often times in your journey of being a full-stack web developer, it is said that
 
 In this quiz I have created, you will be asked 5 questions. As soon as you click the start button, you will have 30 seconds to complete the quiz. But beware if you get a question wrong, you will lose 10 seconds off the clock.
 
-![Start](assets/images/homepage.png)
+![Start](https://github.com/Kammielatay/Code-Quiz/blob/main/.vscode/assets/images/homepage.png)
 
-![Good-Score](assets/images/good-score.png)
+![Good-Score](https://github.com/Kammielatay/Code-Quiz/blob/main/assets/images/good-score.png)
 
 No matter what score you recieve, you will have the chance to add your initials to the High Scores. If the score is too low, then your score might not be displayed. The best way to get you initials on the leader board is by getting a perfect score. 
 
-![Low-Score](assets/images/low-score.png)
+![Low-Score](https://github.com/Kammielatay/Code-Quiz/blob/main/.vscode/assets/images/low-score.png)
 
-![Good-Score](assets/images/high-score.png)
+![Good-Score](https://github.com/Kammielatay/Code-Quiz/blob/main/assets/images/high-score.png)
 
 I believe in you so I know that wont be a challenge. 
 
@@ -26,4 +26,4 @@ Go ahead!
 
 Test your coding skills with my coding challenge. 
 
-This page was created with [Github Pages]()
+This page was created with [Github Pages](https://kammielatay.github.io/Code-Quiz/)
